@@ -19,7 +19,7 @@ def test_calc_biome():
             (0.63, [(1., 'BEACH')]),
             (0.8, [(0.2, 'DESERT'), (0.7, 'GRASSLAND'), (1., 'FOREST')]),
             (0.96, [(0.4, 'GRASSLAND'), (0.7, 'TAIGA'), (1., 'SNOW')]),
-            (1., [(1, 'SNOW')]),
+            (1, [(1, 'SNOW')]),
         ]
 
     h, m = 0.5, 1.

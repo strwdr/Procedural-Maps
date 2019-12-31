@@ -4,11 +4,10 @@ import Constants
 import CommonTools
 import json
 import numpy as np
-from PIL import Image
 
 
 class Terrain:
-    def __init__(self, seed=0, config = None):
+    def __init__(self, seed=0, config=None):
         self._seed = seed
         self._random = random.Random(seed)
         self._simplex_noise = SimplexNoise(self.random.randint(0, Constants.MAX_SEED_VALUE))
@@ -18,50 +17,6 @@ class Terrain:
             self._config = data
         else:
             self._config = config
-        """
-        self._config = {
-            'shape': (500, 500),
-            'height_map': {
-                'octaves': [(2, 2),
-                            (6, 6),
-                            (10, 10),
-                            (20, 20),
-                            (40, 40),
-                            (50, 50),
-                            (100, 100),
-                            (200, 200)],
-                'elevation_distribution': [40, 20, 10, 10, 6, 5, 2, 1],
-            },
-            'moisture_map': {
-                'octaves': [(5, 5),
-                            (10, 10),
-                            (20, 20),
-                            (30, 30),
-                            (50, 50)],
-
-                'elevation_distribution': [10, 7, 4, 3, 2],
-            },
-            'biomes': {
-                'WATER': (30, 144, 255),
-                'BEACH': (255, 255, 102),
-                'DESERT': (255, 255, 102),
-                'GRASSLAND': (154, 205, 50),
-                'FOREST': (34, 139, 34),
-                'TAIGA': (46, 139, 87),
-                'STONE': (169, 169, 169),
-                'SNOW': (224, 255, 255),
-            },
-            'biome_thresholds': [
-                (0.6, [(1., 'WATER')]),
-                (0.63, [(0.2, 'STONE'), (1., 'BEACH')]),
-                (0.8, [(0.2, 'DESERT'), (0.7, 'GRASSLAND'), (1., 'FOREST')]),
-                (0.90, [(0.3, 'TAIGA'), (0.9, 'STONE'), (1., 'SNOW')]),
-
-                (0.96, [(0.7, 'STONE'), (1., 'SNOW')]),
-                (1., [(1, 'SNOW')]),
-            ],
-        }
-        """
 
     @property
     def config(self):
@@ -117,7 +72,10 @@ class Terrain:
         biomes = self.config['biomes']
         for x in range(0, shape[0]):
             for y in range(0, shape[1]):
-                color_map[x][y] = biomes[biome_map[x][y]]
+                if biome_map[x][y] is None:
+                    color_map[x][y] = Constants.NONE_COLOR
+                else:
+                    color_map[x][y] = biomes[biome_map[x][y]]
         return color_map
 
     def generate_terrain(self):
@@ -129,6 +87,8 @@ class Terrain:
             shape=cfg['shape'],
             octaves=hm_cfg['octaves'],
             elevation_distribution=hm_cfg['elevation_distribution'],
+            noise_exp=hm_cfg['noise_exp'],
+            ridge_noise_layers=hm_cfg['ridge_noise_layers']
         )
         mm_cfg = self.config['moisture_map']
 
@@ -136,11 +96,12 @@ class Terrain:
             shape=cfg['shape'],
             octaves=mm_cfg['octaves'],
             elevation_distribution=mm_cfg['elevation_distribution'],
+            noise_exp=mm_cfg['noise_exp'],
+            ridge_noise_layers=mm_cfg['ridge_noise_layers']
         )
 
         biome_map = self.generate_biome_map(height_map, moisture_map)
         color_map = self.generate_color_map(biome_map)
-        CommonTools.export_image(color_map, 't.png')
-        # CommonTools.plot3d(g)
+        CommonTools.export_image(color_map, 't2.png')
         CommonTools.plot2d(height_map)
         CommonTools.plot2d(moisture_map, cmap='gray')

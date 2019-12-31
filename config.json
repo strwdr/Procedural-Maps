@@ -2,26 +2,31 @@
   "shape": [500, 500],
   "height_map": {
     "octaves": [
-      [2, 2],
+      [3, 3],
       [6, 6],
       [10, 10],
       [20, 20],
       [40, 40],
       [50, 50],
       [100, 100],
-      [200, 200]
+      [200, 200],
+      [500, 500]
     ],
-    "elevation_distribution": [40, 20, 10, 10, 6, 5, 2, 1]
+    "elevation_distribution": [50, 30, 20, 10, 7, 6, 4, 3, 1],
+    "noise_exp": 1,
+    "ridge_noise_layers": 0
   },
   "moisture_map": {
     "octaves": [
+      [2, 1],
       [5, 5],
       [10, 10],
       [20, 20],
-      [30, 30],
-      [50, 50]
+      [30, 30]
     ],
-    "elevation_distribution": [10, 7, 4, 3, 2]
+    "elevation_distribution": [20, 7, 4, 3, 2],
+    "noise_exp": 1,
+    "ridge_noise_layers": 1
   },
   "biomes":
   {
@@ -29,17 +34,19 @@
     "BEACH": [255, 255, 102],
     "DESERT": [255, 255, 102],
     "GRASSLAND": [154, 205, 50],
-    "FOREST": [34, 139, 34],
+    "FOREST": [34, 179, 44],
     "TAIGA": [46, 139, 87],
     "STONE": [169, 169, 169],
     "SNOW": [224, 255, 255]},
   "biome_thresholds":
   [
-    [0.6, [[1.0, "WATER"]]],
-    [0.63, [[0.2, "STONE"], [1.0, "BEACH"]]],
-    [0.8, [[0.2, "DESERT"], [0.7, "GRASSLAND"], [1.0, "FOREST"]]],
-    [0.9, [[0.3, "TAIGA"], [0.9, "STONE"], [1.0, "SNOW"]]],
-    [0.96, [[0.4, "STONE"], [1.0, "SNOW"]]],
+    [0.3, [[1.0, "WATER"]]],
+    [0.33, [[0.2, "STONE"], [1.0, "BEACH"]]],
+    [0.59, [[0.05, "STONE"], [0.2, "DESERT"], [0.7, "GRASSLAND"], [1.0, "FOREST"]]],
+    [0.80, [[0.3, "STONE"], [0.4, "GRASSLAND"], [0.9, "TAIGA"], [1.0, "FOREST"]]],
+    [0.86, [[0.7, "STONE"]]],
+    [0.88, [[0.3, "SNOW"], [0.9, "STONE"], [1.0, "TAIGA"]]],
+    [0.90, [[0.7, "SNOW"], [1.0, "STONE"]]],
     [1.0, [[1, "SNOW"]]]
   ]
 }

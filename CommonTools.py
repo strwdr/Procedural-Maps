@@ -6,6 +6,7 @@ from PIL import Image
 
 
 def export_image(color_map, path):
+    color_map = np.swapaxes(color_map,0,1)
     img = Image.fromarray(color_map, 'RGB')
     img.save(path)
 
