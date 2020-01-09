@@ -8,7 +8,7 @@ The same principle rules creating moisture maps.
 After combining both moisture and height maps, the program creates biome map, assigns them the appropriate colors 
 defined in the configuration and generates output picture.
 
-## What it basically does
+## How does it work
 
 from this (height map and noise map):
 
