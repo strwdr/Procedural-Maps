@@ -3,7 +3,7 @@
 Tile-map is a program for generating tile maps written in python.
 Its using simplex noise to generate noise maps. 
 In order to create complex, realistic height maps, 
-the program combines various many simplex noise maps with different settings as octave, noise, exponent and others.
+the program combines various many simplex noise maps with different settings as octave, noise or exponent.
 The same principle rules creating moisture maps.
 After combining both moisture and height maps, the program creates biome map, assigns them the appropriate colors 
 defined in the configuration and generates output picture.
@@ -32,7 +32,7 @@ After combining them and many other layers of noise maps, we get something like 
 
 ![height plot](examples/plots/height_map.png)
 
-With the same principle rules, terrain class generates moisture map:
+On the same principles, terrain class generates moisture map:
 
 ![moisture plot](examples/plots/moisture_map.png)
 
