@@ -1,24 +1,37 @@
 from simplex_noise import SimplexNoise
 import common_tools
-import config
-import json
+import constants
 import numpy as np
-import argparse
-import image
+from copy import deepcopy
 
 
 class Terrain:
-    def __init__(self, config, seed=0, shape=None):
+    def __init__(self, config, seed=constants.DEFAULT_SEED, shape=None, octave_stretch=None):
         self._seed = seed
         self._simplex_noise = SimplexNoise(seed)
-        #if config is None:
-        #    with open('default_world_config.json') as json_file:
-        #        data = json.load(json_file)
-        #    self._config = data
-        #else:
         self._config = config
+        # if passed, multiply all local octave settings by octave_stretch
+        if octave_stretch is not None:
+            if octave_stretch[0] < 0 or octave_stretch[1] < 0:
+                raise ValueError("octave_stretch values cannot be less than 0")
+            for tmp_height_map in self._config['height_map']:
+                for tmp_octave in tmp_height_map['octaves']:
+                    tmp_octave[0] *= octave_stretch[0]
+                    tmp_octave[1] *= octave_stretch[1]
+            for tmp_moisture_map in self._config['moisture_map']:
+                for tmp_octave in tmp_moisture_map['octaves']:
+                    tmp_octave[0] *= octave_stretch[0]
+                    tmp_octave[1] *= octave_stretch[1]
+        # assign shape from the argument to instance's config
         if shape is not None:
             self._config['shape'] = shape
+
+        # if there is no shape settings given as an argument, set instance's shape to default value
+        if 'shape' not in self._config:
+            self._config['shape'] = constants.DEFAULT_SHAPE
+        if self.shape[0] <= 0 or self.shape[1] <= 0:
+            raise ValueError("shape values cannot be less than 0")
+
         self._terrain = {}
         self._generate_terrain()
 
@@ -38,6 +51,7 @@ class Terrain:
     @seed.setter
     def seed(self, seed):
         self._seed = seed
+        # simplex noise instance must be dependent on local seed
         self._reset_simplex_noise()
         self._generate_terrain()
 
@@ -47,11 +61,15 @@ class Terrain:
 
     @property
     def moisture_map(self):
-        return self._terrain['moisture_map']
+        return self._terrain['moisture_map'].copy()
 
     @property
     def height_map(self):
-        return self._terrain['height_map']
+        return self._terrain['height_map'].copy()
+
+    @property
+    def shape(self):
+        return deepcopy(self._config['shape'])
 
     def _reset_simplex_noise(self):
         self._simplex_noise = SimplexNoise(self._seed)
@@ -91,7 +109,7 @@ class Terrain:
         for x in range(0, shape[0]):
             for y in range(0, shape[1]):
                 if biome_map[x][y] is None:
-                    color_map[x][y] = config.NONE_COLOR
+                    color_map[x][y] = constants.NONE_COLOR
                 else:
                     color_map[x][y] = biomes[biome_map[x][y]]
         return color_map
@@ -103,7 +121,7 @@ class Terrain:
         if 'normalization_range' in cfg:
             normalization_range = cfg['normalization_range']
         else:
-            normalization_range = config.DEFAULT_NORMALIZATION_RANGE
+            normalization_range = constants.DEFAULT_NORMALIZATION_RANGE
 
         # if 'default_octaves_density' in cfg:
         #     multiplier = cfg['default_octaves_density']

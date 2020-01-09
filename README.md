@@ -60,7 +60,7 @@ Example:
 python gen_tile_map.py --config_path 'my_world_config.json'
 ```
 
-### shape
+### resolution
 Define the shape of the tile map (tuple of positive integers).
 
 Default value should be in world_config json (world generator is dependent on shape),
@@ -73,7 +73,7 @@ python gen_tile_map.py --resolution 512 512
 ```
 
 ### grid
-Tell the program if you want to add grid to the output image.
+Tell the program whether you want to add grid to the output image.
 
 Default: False
 
@@ -81,6 +81,7 @@ Example:
 
 ```bash
 python gen_tile_map.py --grid
+python gen_tile_map.py --no_grid
 ```
 
 ### output path

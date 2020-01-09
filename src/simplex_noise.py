@@ -2,10 +2,11 @@ import numpy as np
 import random
 import math
 from opensimplex import OpenSimplex
-import config
+import constants
 
 
 class SimplexNoise:
+    """Class responsible for creating noise maps"""
     def __init__(self, seed=0):
         self._random = random.Random(seed)
         self._seed = seed
@@ -24,7 +25,7 @@ class SimplexNoise:
         self._shuffle_simplex_seed()
 
     def _shuffle_simplex_seed(self):
-        self._simplex_seed = self._random.randint(0, config.MAX_SEED_VALUE)
+        self._simplex_seed = self._random.randint(0, constants.MAX_SEED_VALUE)
         self._open_simplex = OpenSimplex(self._simplex_seed)
 
     def simplex_noise(self, x, y, octave=None, shape=None, noise_variant='simplex'):

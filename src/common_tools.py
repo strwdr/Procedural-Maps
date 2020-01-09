@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import config
+import constants
 
 
-def normalize_np2d_array(array, normalization_range=config.DEFAULT_NORMALIZATION_RANGE):
+def normalize_np2d_array(array, normalization_range=constants.DEFAULT_NORMALIZATION_RANGE):
     """Returns normalized two-dimensional numpy array of floats
 
 
@@ -40,6 +40,6 @@ def plot3d(a):
 
 def plot2d(a, cmap='gist_earth'):
     plt.figure()
-    plt.imshow(a, cmap=cmap, interpolation='none')
+    plt.imshow(np.swapaxes(a, 0, 1), cmap=cmap, interpolation='none')
     plt.colorbar()
     plt.show()

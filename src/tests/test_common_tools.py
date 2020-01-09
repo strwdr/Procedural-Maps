@@ -1,4 +1,4 @@
-from src import common_tools
+import common_tools
 import numpy as np
 import random
 
@@ -6,7 +6,7 @@ random.seed(1000)
 
 
 def test_normalization():
-    for t in range(100):
+    for t in range(1000):
         a = random.randint(1, 1000)
         b = random.randint(a + 1, 1001)
         down = min(a, b)

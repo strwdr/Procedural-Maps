@@ -1,8 +1,8 @@
-from src.terrain import Terrain
+from terrain import Terrain
 import numpy as np
 
 
-config = {
+CONFIG = {
         "normalization_range": [0, 1],
         'shape': [8, 1],
         'height_map': [
@@ -44,8 +44,8 @@ config = {
     }
 
 
-def test_config_property():
-    terrain = Terrain(0, config)
+def test_properties():
+    terrain = Terrain(CONFIG)
     tmp_config = terrain.config
     tmp_config['normalization_range'] = [0, 2]
     assert tmp_config != terrain.config
@@ -53,7 +53,7 @@ def test_config_property():
 
 def test_biomes():
 
-    terrain = Terrain(0, config)
+    terrain = Terrain(CONFIG)
 
     height_map = np.asarray(
         [[
