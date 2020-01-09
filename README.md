@@ -16,6 +16,7 @@ from this (height map and noise map):
 ![moisture plot](examples/plots/moisture_map.png)
 
 we get this:
+
 ![default world](examples/generated_maps/default_config.png)
 
 ## Dependencies
