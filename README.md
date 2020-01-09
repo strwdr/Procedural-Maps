@@ -10,25 +10,34 @@ defined in the configuration and generates output picture.
 
 ## How does it work
 The whole world configuration is stored as a dict.
-The simplex class is used to create noise maps. 
+The SimplexNoise class is used to create noise maps. 
 It uses the OpenSimplex library. Two-dimensional
 noise function has the form: 
 
 _**value=noise_function(x,y)**_
 
 OpenSimplex library provides such a function.
-The simplex_noise class uses it to generate different noise maps and combines them as specified in the configuration.
+The simplex_noise module uses it to generate noise maps (stored as numpy 2d arrays of floats).
+
+The terrain module takes care of generating world's terrain as specified in the configuration.
+ 
 
 ### Example
-An example of a ridge (left) and simplex (right) variants of the noise maps:
+Examples of a ridge (left) and simplex (right) variants of the noise maps:
 
-![part map ridge](examples/plots/part_map_ridge.png)<!-- .element style="border: 0; background: None; box-shadow: None; width: 100px" -->
+![part map ridge](examples/plots/part_map_ridge.png)
 ![part map simplex](examples/plots/part_map_simplex.png)
 
+After combining them and many other layers of noise maps, we get something like this:
+
 ![height plot](examples/plots/height_map.png)
+
+With the same principle rules, terrain class generates moisture map:
+
 ![moisture plot](examples/plots/moisture_map.png)
 
-we get this:
+After assigning proper height and moisture values their biome, 
+the program assigns biome to the specific color of that biome as specified in configuration, and generates an output image:
 
 ![default world](examples/generated_maps/default_config.png)
 
