@@ -9,8 +9,21 @@ After combining both moisture and height maps, the program creates biome map, as
 defined in the configuration and generates output picture.
 
 ## How does it work
+The whole world configuration is stored as a dict.
+The simplex class is used to create noise maps. 
+It uses the OpenSimplex library. Two-dimensional
+noise function has the form: 
 
-from this (height map and noise map):
+_**value=noise_function(x,y)**_
+
+OpenSimplex library provides such a function.
+The simplex_noise class uses it to generate different noise maps and combines them as specified in the configuration.
+
+### Example
+An example of a ridge (left) and simplex (right) variants of the noise maps:
+
+![part map ridge](examples/plots/part_map_ridge.png)<!-- .element style="border: 0; background: None; box-shadow: None; width: 100px" -->
+![part map simplex](examples/plots/part_map_simplex.png)
 
 ![height plot](examples/plots/height_map.png)
 ![moisture plot](examples/plots/moisture_map.png)

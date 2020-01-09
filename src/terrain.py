@@ -32,12 +32,14 @@ class Terrain:
         if self.shape[0] <= 0 or self.shape[1] <= 0:
             raise ValueError("shape values cannot be less than 0")
 
-        self._terrain = {}
+        self._moisture_map = None
+        self._height_map = None
         self._generate_terrain()
 
     @property
     def config(self):
-        return self._config.copy()  # we don't want the user to modify the config
+        # we don't want the user to modify the config
+        return self._config.copy()
 
     @config.setter
     def config(self, new_config):
@@ -56,16 +58,12 @@ class Terrain:
         self._generate_terrain()
 
     @property
-    def terrain(self):
-        return self._terrain.copy()
-
-    @property
     def moisture_map(self):
-        return self._terrain['moisture_map'].copy()
+        return self._moisture_map.copy()
 
     @property
     def height_map(self):
-        return self._terrain['height_map'].copy()
+        return self._height_map.copy()
 
     @property
     def shape(self):
@@ -83,11 +81,10 @@ class Terrain:
                         return moisture[1]
         return None
 
-    def get_biome_map(self, height_map=None, moisture_map=None):
-        if height_map is None:
-            height_map = self._terrain['height_map']
-        if moisture_map is None:
-            moisture_map = self._terrain['moisture_map']
+    def get_biome_map(self):
+        """Returns biome map generated from local height_map, moisture_map and config"""
+        height_map = self.height_map
+        moisture_map = self.moisture_map
         if height_map.shape != moisture_map.shape:
             raise ValueError(
                 f"height_map shape {height_map.shape} does not match moisture_map shape {moisture_map.shape}")
@@ -100,9 +97,12 @@ class Terrain:
                 biome_map[x][y] = self._calc_biome(h[x][y], m[x][y])
         return biome_map
 
-    def get_color_map(self, biome_map=None):
-        if biome_map is None:
-            biome_map = self.get_biome_map()
+    def get_color_map(self):
+        """Assigns colors to biomes as configured in local config.
+        Returns numpy 3d array of RGB colors stored as np.uint8.
+        3rd dimension is for RGB data.
+        """
+        biome_map = self.get_biome_map()
         shape = biome_map.shape
         color_map = np.zeros([shape[0], shape[1], 3], dtype=np.uint8)
         biomes = self.config['biomes']
@@ -115,18 +115,13 @@ class Terrain:
         return color_map
 
     def _generate_terrain(self):
+        """Generate terrain maps with settings from local config"""
         cfg = self._config
         shape = cfg['shape']
-
         if 'normalization_range' in cfg:
             normalization_range = cfg['normalization_range']
         else:
             normalization_range = constants.DEFAULT_NORMALIZATION_RANGE
-
-        # if 'default_octaves_density' in cfg:
-        #     multiplier = cfg['default_octaves_density']
-        # else:
-        #     multiplier = (1, 1)
 
         height_map = self._simplex_noise.gen_multi_noise_map(
             shape,
@@ -138,12 +133,9 @@ class Terrain:
             cfg['moisture_map']
         )
         moisture_map = common_tools.normalize_np2d_array(moisture_map, normalization_range)
-        print(moisture_map)
 
-        self._terrain = {
-            'height_map': height_map,
-            'moisture_map': moisture_map
-        }
+        self._height_map = height_map
+        self._moisture_map = moisture_map
         # reset simplex noise seed so that next call of that method generates terrain dependent on seed
         self._reset_simplex_noise()
 

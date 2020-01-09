@@ -23,11 +23,9 @@ if __name__ == "__main__":
     with open(args.config_path) as json_file:
         world_conf = json.load(json_file)
 
-    print(args.octave_stretch)
     terrain = Terrain(config=world_conf, seed=args.seed, shape=args.resolution, octave_stretch=args.octave_stretch)
     color_map = terrain.get_color_map()
     img = image.create_image_from_color_map(color_map, args.grid)
-    print(args.output_path)
     image.save_image(img, args.output_path)
     common_tools.plot2d(terrain.height_map)
     common_tools.plot2d(terrain.moisture_map, cmap='gray')
