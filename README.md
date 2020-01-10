@@ -209,12 +209,12 @@ simple config with 3 biomes
 }
 ```
 ## Examples
-## Default world config
+### Default world config
 Example of a world of shape [500, 500] generated with the default config.
 
 ![default world](examples/generated_maps/default_config.png)
 
-## Octaves
+### Octaves
 On the left side there is a tile map made with height_map_simplex config. 
 Biome mapping in that config lacks moisture data. Only height map is visible on the pictures. 
 There are 5 octaves in both dimensions.
@@ -231,10 +231,10 @@ upper left section of the first picture.
 
 ![an example with only height map visible half octaves](examples/generated_maps/height_map_simplex_half_octaves.png)
 
-## Height exponent
+### Height exponent
 
 ![height exponent](examples/generated_gifs/height_exp.gif)
 
-## Moisture exponent
+### Moisture exponent
 
 ![moisture exponent](examples/generated_gifs/moisture_exp.gif)
