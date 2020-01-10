@@ -1,7 +1,7 @@
 # Tile Map
 
 Tile-map is a program for generating tile maps written in python.
-Its using simplex noise to generate noise maps. 
+It uses simplex noise to generate noise maps. 
 In order to create complex, realistic height maps, 
 the program combines various many simplex noise maps with different settings as octave, noise or exponent.
 The same principle rules creating moisture maps.
@@ -9,7 +9,7 @@ After combining both moisture and height maps, the program creates biome map, as
 defined in the configuration and generates output picture.
 
 ## How does it work
-The whole world configuration is stored as a dict.
+The world configuration is stored as a dict.
 The SimplexNoise class is used to create noise maps. 
 It uses the OpenSimplex library. Two-dimensional
 noise function has the form: 
