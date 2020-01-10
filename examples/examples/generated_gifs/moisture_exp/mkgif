@@ -1,0 +1,2 @@
+ffmpeg -f image2 -i %d.png video.avi
+ffmpeg -i video.avi -pix_fmt rgb24 -vf "fps=10"  out.gif
