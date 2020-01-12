@@ -313,6 +313,10 @@ Output image created with this config:
 
 ## Examples <a name="examples"></a>
 ### Default world config
-Example of a world of shape [500, 500] generated with the default config.
+Example of a world generated with the default config.
 
 ![default world](examples/generated_maps/default_config.png)
+### Lava world config
+Example of a world generated with the lava_world_config.json.
+
+![default world](examples/generated_maps/lava_world.png)

@@ -5,9 +5,9 @@
     {
       "noise_variant": "ridge",
       "octaves": [
-        [1.5, 6]
+        [5, 6]
       ],
-      "elevation_distribution": [2],
+      "elevation_distribution": [2.1],
       "noise_exp": 5
     },
     {
@@ -42,16 +42,15 @@
     "DARK_LAND": [128, 0, 0],
     "GOLD_LAND": [255, 215, 0],
     "DARK_DESERT": [139, 69, 19],
-    "OBSIDIAN": [0, 0, 0]
+    "OBSIDIAN": [40, 0, 0]
   },
   "biome_thresholds":
   [
-    [0.3, [[1.0, "LAVA"]]],
-    [0.45, [[0.1, "DARK_DESERT"], [1.0, "OBSIDIAN"]]],
-    [0.69, [[0.3, "DARK_DESERT"], [0.7, "DARK_LAND"], [1.0, "OBSIDIAN"]]],
-    [0.80, [[0.3, "DARK_DESERT"], [0.35, "GOLD_LAND"], [0.9, "DARK_LAND"], [1.0, "OBSIDIAN"]]],
-    [0.73, [[0.3, "LAVA"], [0.9, "DARK_LAND"], [1.0, "OBSIDIAN"]]],
-    [0.80, [[0.7, "LAVA"], [1.0, "OBSIDIAN"]]],
+    [0.45, [[0.1, "LAVA"], [0.12, "OBSIDIAN"], [1.0, "DARK_LAND"]]],
+    [0.59, [[0.2, "LAVA"], [0.3, "OBSIDIAN"], [0.7, "DARK_LAND"], [1.0, "DARK_DESERT"]]],
+    [0.62, [[0.3, "LAVA"], [0.3, "OBSIDIAN"], [0.35, "GOLD_LAND"], [0.9, "DARK_LAND"], [1.0, "DARK_DESERT"]]],
+    [0.73, [[0.7, "LAVA"], [0.9, "OBSIDIAN"], [1.0, "DARK_LAND"]]],
+    [0.80, [[0.8, "LAVA"], [1.0, "OBSIDIAN"]]],
     [1.0, [[1, "LAVA"]]]
   ]
 }
