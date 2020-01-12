@@ -213,7 +213,7 @@ The array's length is a number of noise map layers and it must be the same as le
 Example:
 
 For comparision there are 2 images of *one-layer simplex noise variant* noise maps 
-with 2.5 octaves (left) and 5 octaves (right) settings in both dimensions.
+with 5 octaves (left) and 2.5 octaves (right) settings in both dimensions.
 
 ![an example with only height map visible](examples/generated_maps/height_map_simplex.png)
 ![an example with only height map visible half octaves](examples/generated_maps/height_map_simplex_half_octaves.png)
