@@ -2,10 +2,19 @@
 
 For bitbucket server:
 
-1. [ How does it work. ](#howto)
-2. [ Dependencies. ](#deps)
-
-
+1. [ How does it work ](#howto)
+2. [ Dependencies ](#deps)
+3. [ Usage ](#usage)
+4. [ Parameters ](#params)
+    1. [ seed ](#seed)
+    2. [ config path ](#cfgpth)
+    3. [ resolution ](#res)
+    4. [ grid ](#grid)
+    5. [ output path ](#outpth)
+5. [ World generator config ](#worldcfg)
+    1. [ Parameters ](#worldcfg-params)
+    2. [ Example](#worldcfg-example)
+6. [ Examples ](#examples)
 ## 1. Description 
 # Tile Map
 
@@ -49,8 +58,9 @@ After assigning proper height and moisture values their biome,
 the program assigns biome to the specific color of that biome as specified in configuration, and generates an output image:
 
 ![default world](examples/generated_maps/default_config.png)
-<a name="deps"></a>
-## Dependencies
+
+## Dependencies <a name="deps"></a>
+
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install dependencies.
 
@@ -58,18 +68,18 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install depende
 pip install -r requirements.txt
 ```
 
-## Usage
+## Usage <a name="usage"></a>
 
 ```bash
 python3 gen_tile_map.py <arguments>
 ```
 
-## How to run
+## Parameters <a name="params"></a>
 
 All available input parameters are described below.
 No arguments are required.
 
-### seed
+### seed <a name="seed"></a>
 World seed of positive integer type.
 
 Default: 0
@@ -80,7 +90,7 @@ Example:
 python gen_tile_map.py --seed 123
 ```
 
-### config path
+### config path <a name="cfgpth"></a>
 World generator configuration path (string, file must be of json type).
 
 Default: 'default_world_config.json'
@@ -91,7 +101,7 @@ Example:
 python gen_tile_map.py --config_path 'my_world_config.json'
 ```
 
-### resolution
+### resolution <a name="res"></a>
 Define the shape of the tile map (tuple of positive integers).
 
 Default value should be in world_config json (world generator is dependent on shape),
@@ -103,7 +113,7 @@ Example:
 python gen_tile_map.py --resolution 512 512
 ```
 
-### grid
+### grid <a name="grid"></a>
 Tell the program whether you want to add grid to the output image.
 
 Default: False
@@ -115,7 +125,7 @@ python gen_tile_map.py --grid
 python gen_tile_map.py --no_grid
 ```
 
-### output path
+### output path <a name="outpth"></a>
 Tile map image output path (string, file must be of png type).
 
 Default: 'output.png'
@@ -126,13 +136,13 @@ Example:
 python gen_tile_map.py --output_path 'my_output.png'
 ```
 
-## World generator config
+## World generator config <a name="worldcfg"></a>
 The world generator config is stored in the dict loaded from a json file passed as an argument to the program. 
 (see config path program parameter)
 
 All available world config parameters are described below:
 
-### Parameters:
+### Parameters <a name="worldcfg-params"></a>
 
 #### shape
 Define the shape of the tile map (tuple of positive integers).
@@ -169,7 +179,7 @@ Example:
 
 
 
-### Example config:
+### Example config <a name="worldcfg-example"></a>
 simple config with 3 biomes
 ```json
 {
@@ -217,7 +227,7 @@ simple config with 3 biomes
   ]
 }
 ```
-## Examples
+## Examples <a name="examples"></a>
 ### Default world config
 Example of a world of shape [500, 500] generated with the default config.
 
