@@ -139,7 +139,7 @@ Example:
 python gen_tile_map.py --output_path 'my_output.png'
 ```
 
-### octave multiplier <a name="oct-multiplier"</a>
+### octave multiplier <a name="oct-multiplier"></a>
 A optional parameter used for scaling octaves in both dimensions (tuple of non-negative floats).
 
 The tuple values ​​indicate the octave multiplier for the x, y axises, respectively.
