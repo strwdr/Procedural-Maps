@@ -1,7 +1,6 @@
+# Tile Maps
 
-
-For bitbucket server:
-
+## Table of contents
 1. [ How does it work ](#howto)
 2. [ Dependencies ](#deps)
 3. [ Usage ](#usage)
@@ -15,9 +14,9 @@ For bitbucket server:
     1. [ Parameters ](#worldcfg-params)
     2. [ Example](#worldcfg-example)
 6. [ Examples ](#examples)
-## 1. Description 
-# Tile Map
 
+
+## How does it work <a name="howto"></a>
 Tile-map is a program for generating tile maps written in python.
 It uses simplex noise to generate noise maps. 
 In order to create complex, realistic height maps, 
@@ -26,7 +25,6 @@ The same principle rules creating moisture maps.
 After combining both moisture and height maps, the program creates biome map, assigns them the appropriate colors 
 defined in the configuration and generates output picture.
 
-## How does it work <a name="howto"></a>
 The world configuration is stored as a dict.
 The SimplexNoise class is used to create noise maps. 
 It uses the OpenSimplex library. Two-dimensional
