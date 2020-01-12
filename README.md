@@ -5,15 +5,15 @@
 2. [ Dependencies ](#deps)
 3. [ Usage ](#usage)
 4. [ Parameters ](#params)
-    1. [ seed ](#seed)
-    2. [ config path ](#cfgpth)
-    3. [ resolution ](#res)
-    4. [ grid ](#grid)
-    5. [ output path ](#outpth)
-    6. [ octave multiplier](#octmultiplier)
+    - [ seed ](#seed)
+    - [ config path ](#cfgpth)
+    - [ resolution ](#res)
+    - [ grid ](#grid)
+    - [ output path ](#outpth)
+    - [ octave multiplier](#octmultiplier)
 5. [ World generator config ](#worldcfg)
-    1. [ Parameters ](#worldcfg-params)
-    2. [ Example](#worldcfg-example)
+    - [ Parameters ](#worldcfg-params)
+    - [ Example](#worldcfg-example)
 6. [ Examples ](#examples)
 
 
@@ -252,6 +252,10 @@ simple config with 3 biomes
   ]
 }
 ```
+Output image with this config:
+
+![3 biome world](examples/generated_maps/simple_3_biome_world.png)
+
 ## Examples <a name="examples"></a>
 ### Default world config
 Example of a world of shape [500, 500] generated with the default config.
@@ -259,7 +263,8 @@ Example of a world of shape [500, 500] generated with the default config.
 ![default world](examples/generated_maps/default_config.png)
 
 ### Octaves
-On the left side there is a tile map made with height_map_simplex config. 
+On the left side there is a tile map made with height_map_simplex.json config. 
+You can find that config in the examples folder and analyze it by yourself.
 Biome mapping in that config lacks moisture data. Only height map is visible on the pictures. 
 There are 5 octaves in both dimensions.
 
