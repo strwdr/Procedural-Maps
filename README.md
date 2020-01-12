@@ -307,7 +307,7 @@ simple config with 3 biomes
   ]
 }
 ```
-Output image with this config:
+Output image created with this config:
 
 ![3 biome world](examples/generated_maps/simple_3_biome_world.png)
 
