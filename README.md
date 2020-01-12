@@ -17,7 +17,7 @@
 
 
 ## How does it work <a name="howto"></a>
-Tile maps is a program for generating tile maps written in python.
+Tile Maps is a program for generating tile maps written in python.
 It uses simplex noise to generate noise maps. 
 In order to create complex, realistic height maps, 
 the program combines various many simplex noise maps with different settings as octave, noise or exponent.
