@@ -6,22 +6,22 @@ from copy import deepcopy
 
 
 class Terrain:
-    def __init__(self, config, seed=constants.DEFAULT_SEED, shape=None, octave_stretch=None):
+    def __init__(self, config, seed=constants.DEFAULT_SEED, shape=None, octave_multiplier=None):
         self._seed = seed
         self._simplex_noise = SimplexNoise(seed)
         self._config = config
         # if passed, multiply all local octave settings by octave_stretch
-        if octave_stretch is not None:
-            if octave_stretch[0] < 0 or octave_stretch[1] < 0:
+        if octave_multiplier is not None:
+            if octave_multiplier[0] < 0 or octave_multiplier[1] < 0:
                 raise ValueError("octave_stretch values cannot be less than 0")
             for tmp_height_map in self._config['height_map']:
                 for tmp_octave in tmp_height_map['octaves']:
-                    tmp_octave[0] *= octave_stretch[0]
-                    tmp_octave[1] *= octave_stretch[1]
+                    tmp_octave[0] *= octave_multiplier[0]
+                    tmp_octave[1] *= octave_multiplier[1]
             for tmp_moisture_map in self._config['moisture_map']:
                 for tmp_octave in tmp_moisture_map['octaves']:
-                    tmp_octave[0] *= octave_stretch[0]
-                    tmp_octave[1] *= octave_stretch[1]
+                    tmp_octave[0] *= octave_multiplier[0]
+                    tmp_octave[1] *= octave_multiplier[1]
         # assign shape from the argument to instance's config
         if shape is not None:
             self._config['shape'] = shape

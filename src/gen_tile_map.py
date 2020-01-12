@@ -12,7 +12,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config_path", default=constants.DEFAULT_CONFIG_PATH, type=str)
     parser.add_argument("--resolution", required=False, type=int, nargs="+")
-    parser.add_argument("--octave_stretch", required=False, type=float, nargs="+")
+    parser.add_argument("--octave_multiplier", required=False, type=float, nargs="+")
     parser.add_argument("--output_path", default=constants.DEFAULT_OUTPUT_PATH, type=str)
     parser.add_argument("--seed", default=constants.DEFAULT_SEED, type=int)
     parser.add_argument('--grid', dest='grid', action='store_true')
@@ -23,7 +23,7 @@ if __name__ == "__main__":
     with open(args.config_path) as json_file:
         world_conf = json.load(json_file)
 
-    terrain = Terrain(config=world_conf, seed=args.seed, shape=args.resolution, octave_stretch=args.octave_stretch)
+    terrain = Terrain(config=world_conf, seed=args.seed, shape=args.resolution, octave_multiplier=args.octave_multiplier)
     color_map = terrain.get_color_map()
     img = image.create_image_from_color_map(color_map, args.grid)
     image.save_image(img, args.output_path)

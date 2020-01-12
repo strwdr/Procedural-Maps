@@ -10,6 +10,7 @@
     3. [ resolution ](#res)
     4. [ grid ](#grid)
     5. [ output path ](#outpth)
+    6. [ octave multiplier](#octmultiplier)
 5. [ World generator config ](#worldcfg)
     1. [ Parameters ](#worldcfg-params)
     2. [ Example](#worldcfg-example)
@@ -134,6 +135,31 @@ Example:
 python gen_tile_map.py --output_path 'my_output.png'
 ```
 
+### octave multiplier <a name="oct-multiplier"</a>
+A optional parameter used for scaling octaves in both dimensions (tuple of non-negative floats).
+
+The tuple values ​​indicate the octave multiplier for the x, y axises, respectively.
+ 
+All the octave values from the world config are multiplied by the corresponding dimension's multiplier.
+
+Useful, when the map resolution ratio is different than 1:1, and you want to preserve the octave frequency 
+settings. For Example When you set the resolution to 128x256 you probably want these multipliers to be 1, 2. 
+That setting is going to stretch the map in y dimension so that the octave frequency is the same as in default 
+1:1 ratio resolution.
+
+By default, the program uses octave values from the world config. 
+
+Example:
+
+```bash
+python gen_tile_map.py --octave_multiplier 1 2.5
+```
+
+Before, after applying the example parameter:
+
+![default small](examples/generated_maps/default_small.png)
+![stretched default small](examples/generated_maps/stretched_default_small.png)
+
 ## World generator config <a name="worldcfg"></a>
 The world generator config is stored in the dict loaded from a json file passed as an argument to the program. 
 (see config path program parameter)
@@ -168,13 +194,10 @@ Example:
 
 #### height map/moisture map
 
-
 Example:
 ```json
 "normalization_range": [0, 1000]
 ```
-
-
 
 
 ### Example config <a name="worldcfg-example"></a>
