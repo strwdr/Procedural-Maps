@@ -166,7 +166,7 @@ Before and after applying the example parameter:
 
 ## World generator config <a name="worldcfg"></a>
 The world generator config is stored in the dict loaded from a json file passed as an argument to the program. 
-(see <a href="cfgpth">config path program parameter</a>)
+(see <a name="cfgpth">config path program parameter</a>)
 
 All available world config parameters are described below:
 
