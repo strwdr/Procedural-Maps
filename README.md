@@ -56,7 +56,7 @@ On the same principles, terrain class generates moisture map:
 After assigning proper height and moisture values their biome, 
 the program assigns biome to the specific color of that biome as specified in configuration, and generates an output image:
 
-![default world](examples/generated_maps/default_config.png)
+![default world](examples/generated_maps/default_small.png)
 
 ## Dependencies <a name="deps"></a>
 
@@ -168,7 +168,8 @@ Before and after applying the example parameter:
 The world generator config is stored in the dict loaded from a json file passed as an argument to the program. 
 (see <a name="cfgpth">config path program parameter</a>)
 
-All available world config parameters are described below:
+All available world config parameters are described below.
+If the parameter does not have a default value specified, it means that the parameter is required.
 
 ### Parameters <a name="worldcfg-params"></a>
 
@@ -177,33 +178,87 @@ Define the shape of the tile map (tuple of positive integers).
 
 Default: (256, 256)
 
-Example:
-```json
-"shape": [250, 250]
-```
-
 #### normalization range
 Define the range to which output map values are scaled (tuple of floats).
 
-Its useful when you want to define more complex biome thresholds.
+Its useful when you want to create more complex biome thresholds.
 If you set normalization range to bigger values, you could avoid using floats.
 
 Default: (0, 1)
 
-
-Example:
-```json
-"normalization_range": [0, 1000]
-```
-
 #### height map/moisture map
+These parameters store data as an array of dictionaries of described below parameters.
+Dicts are stored in the array, to combine the maps with different parameters as *noise variant* or *noise exp*
+
+For example in the default world config, there is a *ridge noise variant* on top 
+(the biggest distribution values of all layers) of other *simplex noise variant* layers.
+It is configured in such a way, as to create realistic looking mountain ranges.
+
+Height and moisture maps parameters are the same.
+
+##### noise_variant
+Available options:
+- "ridge"
+- "simplex"
+
+Default: "simplex"
+
+##### octaves
+This parameter is used to set the number of noise octaves on a given dimension for all the noise layers of the map.
+It is stored as an array of two-valued tuples (x, y axis settings respectively).
+
+The array's length is a number of noise map layers and it must be the same as length of the 
+*elevation_distribution* array.
 
 Example:
-```json
-"normalization_range": [0, 1000]
-```
 
+For comparision there are 2 images of *one-layer simplex noise variant* noise maps 
+with 2.5 octaves (left) and 5 octaves (right) settings in both dimensions.
 
+![an example with only height map visible](examples/generated_maps/height_map_simplex.png)
+![an example with only height map visible half octaves](examples/generated_maps/height_map_simplex_half_octaves.png)
+
+If you look closely, you can notice that the right picture is in fact differently normalized and scaled 
+upper left section of the left one.
+
+*These examples are made with the height_map_simplex.json and height_map_simplex_half_octaves.json configs located
+in the examples/example_world_configs folder. 
+Biome mapping in that config lacks moisture data. Only height map is visible on the pictures.*
+
+##### elevation_distribution
+This parameter is used to set the relative multipliers for all the noise layers of the map.
+It is stored as an array of floats of the same length as the length of *octaves* parameter's array. 
+Its destination layer correspond the octave setting with the same array's element index number.
+
+##### noise_exp
+This parameter (single, non-negative float type number) is used to set the exponent of all the noise map values after 
+combining the generated noise map layers.
+All the output map's values are modified using the formula below:
+
+*output_map\[x]\[y] = output_map\[x]\[y]^noise_exp*
+
+Examples:
+
+The animations below show how changing a parameter affects the distribution of biomes.
+On the left animation the height map exponent changes and on the right the moisture map exponent changes.
+
+![height exponent](examples/generated_gifs/height_exp.gif)
+![moisture exponent](examples/generated_gifs/moisture_exp.gif)
+
+#### biomes
+A dict that stores all the biome names (strings) as a key and corresponding RGB color as a value 
+(three-valued tuples of positive 8-bit integers (0-255)).
+
+#### biome_thresholds
+An array that stores the information which biome is assigned to a given combination of height and moisture.
+It is an array of two-valued tuples.
+Let's assume that arr is the biome_thresholds array.
+
+The 
+
+For any positive x in range of len(arr) arr\[x-1]\[0] < arr\[x]\[0].
+Its because the 
+*arr\[x]\[0]* corresponds t
 ### Example config <a name="worldcfg-example"></a>
 simple config with 3 biomes
 ```json
@@ -261,29 +316,3 @@ Output image with this config:
 Example of a world of shape [500, 500] generated with the default config.
 
 ![default world](examples/generated_maps/default_config.png)
-
-### Octaves
-On the left side there is a tile map made with height_map_simplex.json config. 
-You can find that config in the examples folder and analyze it by yourself.
-Biome mapping in that config lacks moisture data. Only height map is visible on the pictures. 
-There are 5 octaves in both dimensions.
-
-
-![an example with only height map visible](examples/generated_maps/height_map_simplex.png)
-
-###
-
-For comparision there are 2.5 octaves in both dimensions on the next picture.
-Its made with the same seed and config as the first picture.
-If you look closely, you can notice that it is in fact differently normalized and scaled 
-upper left section of the first picture.
-
-![an example with only height map visible half octaves](examples/generated_maps/height_map_simplex_half_octaves.png)
-
-### Height exponent
-
-![height exponent](examples/generated_gifs/height_exp.gif)
-
-### Moisture exponent
-
-![moisture exponent](examples/generated_gifs/moisture_exp.gif)
