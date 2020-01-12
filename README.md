@@ -1,7 +1,7 @@
 # Tile Maps
 
 ## Table of contents
-1. [ How does it work ](#howto)
+1. [ How does it work ](#howdoesitwork)
 2. [ Dependencies ](#deps)
 3. [ Usage ](#usage)
 4. [ Parameters ](#params)
@@ -16,7 +16,7 @@
 6. [ Examples ](#examples)
 
 
-## How does it work <a name="howto"></a>
+## How does it work <a name="howdoesitwork"></a>
 Tile Maps is a program for generating tile maps written in python.
 It uses simplex noise to generate noise maps. 
 In order to create complex, realistic height maps, 
