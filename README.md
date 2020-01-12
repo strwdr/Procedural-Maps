@@ -1,3 +1,12 @@
+
+
+For bitbucket server:
+
+1. [ How does it work. ](#howto)
+2. [ Dependencies. ](#deps)
+
+
+## 1. Description 
 # Tile Map
 
 Tile-map is a program for generating tile maps written in python.
@@ -8,7 +17,7 @@ The same principle rules creating moisture maps.
 After combining both moisture and height maps, the program creates biome map, assigns them the appropriate colors 
 defined in the configuration and generates output picture.
 
-## How does it work
+## How does it work <a name="howto"></a>
 The world configuration is stored as a dict.
 The SimplexNoise class is used to create noise maps. 
 It uses the OpenSimplex library. Two-dimensional
@@ -40,7 +49,7 @@ After assigning proper height and moisture values their biome,
 the program assigns biome to the specific color of that biome as specified in configuration, and generates an output image:
 
 ![default world](examples/generated_maps/default_config.png)
-
+<a name="deps"></a>
 ## Dependencies
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install dependencies.
