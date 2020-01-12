@@ -4,7 +4,7 @@ import constants
 import json
 import argparse
 import image
-from schema import Schema, And, Use, Optional, SchemaError
+# from schema import Schema, And, Use, Optional, SchemaError
 
 
 if __name__ == "__main__":
