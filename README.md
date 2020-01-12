@@ -124,6 +124,10 @@ python gen_tile_map.py --grid
 python gen_tile_map.py --no_grid
 ```
 
+Output 25x25 map with grid parameter:
+
+![default grid](examples/generated_maps/default_grid.png)
+
 ### output path <a name="outpth"></a>
 Tile map image output path (string, file must be of png type).
 
@@ -143,7 +147,7 @@ The tuple values ​​indicate the octave multiplier for the x, y axises, respe
 All the octave values from the world config are multiplied by the corresponding dimension's multiplier.
 
 Useful, when the map resolution ratio is different than 1:1, and you want to preserve the octave frequency 
-settings. For Example When you set the resolution to 128x256 you probably want these multipliers to be 1, 2. 
+settings. For Example When you set the resolution to 128x256 you probably want these multipliers to be (1, 2). 
 That setting is going to stretch the map in y dimension so that the octave frequency is the same as in default 
 1:1 ratio resolution.
 
@@ -155,7 +159,7 @@ Example:
 python gen_tile_map.py --octave_multiplier 1 2.5
 ```
 
-Before, after applying the example parameter:
+Before and after applying the example parameter:
 
 ![default small](examples/generated_maps/default_small.png)
 ![stretched default small](examples/generated_maps/stretched_default_small.png)
