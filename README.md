@@ -171,14 +171,13 @@ The world generator config is stored in the dict loaded from a json file passed 
 All available world config parameters are described below.
 If the parameter does not have a default value specified, it means that the parameter is required.
 
-### Parameters <a name="worldcfg-params"></a>
+### shape <a name="worldcfg-params"></a>
 
-#### shape
 Define the shape of the tile map (tuple of positive integers).
 
 Default: (256, 256)
 
-#### normalization range
+### normalization range
 Define the range to which output map values are scaled (tuple of floats).
 
 Its useful when you want to create more complex biome thresholds.
@@ -186,7 +185,7 @@ If you set normalization range to bigger values, you could avoid using floats.
 
 Default: (0, 1)
 
-#### height map/moisture map
+### height map/moisture map
 These parameters store data as an array of dictionaries of described below parameters.
 Dicts are stored in the array, to combine the maps with different parameters as *noise variant* or *noise exp*
 
@@ -196,14 +195,14 @@ It is configured in such a way, as to create realistic looking mountain ranges.
 
 Height and moisture maps parameters are the same.
 
-##### noise_variant
+#### noise_variant
 Available options:
 - "ridge"
 - "simplex"
 
 Default: "simplex"
 
-##### octaves
+#### octaves
 This parameter is used to set the number of noise octaves on a given dimension for all the noise layers of the map.
 It is stored as an array of two-valued tuples (x, y axis settings respectively).
 
@@ -225,12 +224,12 @@ upper left section of the left one.
 in the examples/example_world_configs folder. 
 Biome mapping in that config lacks moisture data. Only height map is visible on the pictures.*
 
-##### elevation_distribution
+#### elevation_distribution
 This parameter is used to set the relative multipliers for all the noise layers of the map.
 It is stored as an array of floats of the same length as the length of *octaves* parameter's array. 
 Its destination layer correspond the octave setting with the same array's element index number.
 
-##### noise_exp
+#### noise_exp
 This parameter (single, non-negative float type number) is used to set the exponent of all the noise map values after 
 combining the generated noise map layers.
 All the output map's values are modified using the formula below:
@@ -245,11 +244,11 @@ On the left animation the height map exponent changes and on the right the moist
 ![height exponent](examples/generated_gifs/height_exp.gif)
 ![moisture exponent](examples/generated_gifs/moisture_exp.gif)
 
-#### biomes
+### biomes
 A dict that stores all the biome names (strings) as a key and corresponding RGB color as a value 
 (three-valued tuples of positive 8-bit integers (0-255)).
 
-#### biome_thresholds
+### biome_thresholds
 An array that stores the information which biome is assigned to a given combination of height and moisture.
 It is an array of two-valued tuples.
 Let's assume that arr is the biome_thresholds array.
