@@ -17,15 +17,19 @@ if __name__ == "__main__":
     parser.add_argument("--seed", default=constants.DEFAULT_SEED, type=int)
     parser.add_argument('--grid', dest='grid', action='store_true')
     parser.add_argument('--no_grid', dest='grid', action='store_false')
+    parser.add_argument('--debug', dest='debug', action='store_true')
+    parser.set_defaults(debug=False)
     parser.set_defaults(grid=False)
     args = parser.parse_args()
 
     with open(args.config_path) as json_file:
         world_conf = json.load(json_file)
 
-    terrain = Terrain(config=world_conf, seed=args.seed, shape=args.resolution, octave_multiplier=args.octave_multiplier)
+    terrain = Terrain(config=world_conf, seed=args.seed, shape=args.resolution,
+                      octave_multiplier=args.octave_multiplier)
     color_map = terrain.get_color_map()
     img = image.create_image_from_color_map(color_map, args.grid)
     image.save_image(img, args.output_path)
-    common_tools.plot2d(terrain.height_map)
-    common_tools.plot2d(terrain.moisture_map, cmap='gray')
+    if args.debug:
+        common_tools.plot2d(terrain.height_map)
+        common_tools.plot2d(terrain.moisture_map, cmap='gray')

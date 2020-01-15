@@ -6,6 +6,7 @@ from copy import deepcopy
 
 
 class Terrain:
+    """Class that takes care of generating terrain"""
     def __init__(self, config, seed=constants.DEFAULT_SEED, shape=None, octave_multiplier=None):
         self._seed = seed
         self._simplex_noise = SimplexNoise(seed)
@@ -98,9 +99,9 @@ class Terrain:
         return biome_map
 
     def get_color_map(self):
-        """Assigns colors to biomes as configured in local config.
-        Returns numpy 3d array of RGB colors stored as np.uint8.
-        3rd dimension is for RGB data.
+        """Assigns colors to the biomes as configured in the local config.
+        Returns a numpy 3d array of RGB colors stored as np.uint8.
+        3rd dimension stores RGB data.
         """
         biome_map = self.get_biome_map()
         shape = biome_map.shape
@@ -115,7 +116,7 @@ class Terrain:
         return color_map
 
     def _generate_terrain(self):
-        """Generate terrain maps with settings from local config"""
+        """Generate maps with settings from local config"""
         cfg = self._config
         shape = cfg['shape']
         if 'normalization_range' in cfg:

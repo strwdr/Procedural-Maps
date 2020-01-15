@@ -92,9 +92,6 @@ class SimplexNoise:
                 for y in range(shape[1]):
                     tmp[x][y] += elevation_distribution[i] * self.simplex_noise(x, y, new_octave, shape, noise_variant)
             a += tmp
-            import common_tools
-            if i == 0:
-                common_tools.plot2d(tmp)
         for x in range(shape[0]):
             for y in range(shape[1]):
                 a[x][y] = math.pow(a[x][y], noise_exp)
