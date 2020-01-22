@@ -3,3 +3,4 @@ pillow
 opensimplex
 argparse
 matplotlib
+pytest

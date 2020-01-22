@@ -115,6 +115,8 @@ python gen_tile_map.py --resolution 512 512
 ### grid <a name="grid"></a>
 Tell the program whether you want to add grid to the output image.
 
+**WARNING!** the grid increases the output image resolution 10 times in each dimension.
+
 Default: False
 
 Example:
@@ -251,13 +253,23 @@ A dict that stores all the biome names (strings) as a key and corresponding RGB 
 ### biome_thresholds
 An array that stores the information which biome is assigned to a given combination of height and moisture.
 It is an array of two-valued tuples.
-Let's assume that arr is the biome_thresholds array.
+Let's assume that arr is the biome_thresholds array, and the normalization is a tuple of normalization boundaries 
+(as specified in the config file).
 
-The 
+*arr\[x]\[0]* value is the threshold below which all the height  is assigned to 
 
-For any positive x in range of len(arr) arr\[x-1]\[0] < arr\[x]\[0].
-Its because the 
-*arr\[x]\[0]* corresponds t
+For any positive x in range of len(arr):
+
+*arr\[x-1]\[0] < arr\[x]\[0]*
+
+*arr\[x]\[1]* is an array of tuples of moisture thresholds, and biomes assigned to them.
+
+The tuples stored in the array are (float > 0 (threshold), string (biome name))
+
+For any positive y in range of len(arr\[x]\[1]):
+
+*arr\[x]\[y-1]\[1] < arr\[x]\[y]\[1]*
+
 ### Example config <a name="worldcfg-example"></a>
 simple config with 3 biomes
 ```json

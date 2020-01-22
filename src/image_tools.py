@@ -4,6 +4,12 @@ import constants
 
 
 def create_image_from_color_map(color_map, grid=False):
+    """A function that returns color_map converted to pillow image
+
+    Keyword arguments:
+    color_map -- 3d numpy color array (dtype=np.uint8)
+    grid -- output image has a grid that separates pixels
+    """
     # match x coordinate to horizontal photo dimension and y to vertical
     color_map = np.swapaxes(color_map, 0, 1)
 

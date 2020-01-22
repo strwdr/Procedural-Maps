@@ -1,12 +1,12 @@
 from simplex_noise import SimplexNoise
-import common_tools
+import numpy_tools
 import constants
 import numpy as np
 from copy import deepcopy
 
 
 class Terrain:
-    """Class that takes care of generating terrain"""
+    """Class responsible for generating terrain"""
     def __init__(self, config, seed=constants.DEFAULT_SEED, shape=None, octave_multiplier=None):
         self._seed = seed
         self._simplex_noise = SimplexNoise(seed)
@@ -62,9 +62,17 @@ class Terrain:
     def moisture_map(self):
         return self._moisture_map.copy()
 
+    @moisture_map.setter
+    def moisture_map(self, value):
+        self._moisture_map = value
+
     @property
     def height_map(self):
         return self._height_map.copy()
+
+    @height_map.setter
+    def height_map(self, value):
+        self._height_map = value
 
     @property
     def shape(self):
@@ -116,7 +124,7 @@ class Terrain:
         return color_map
 
     def _generate_terrain(self):
-        """Generate maps with settings from local config"""
+        """Generate the terrain maps with settings from local config"""
         cfg = self._config
         shape = cfg['shape']
         if 'normalization_range' in cfg:
@@ -128,15 +136,17 @@ class Terrain:
             shape,
             cfg['height_map']
         )
-        height_map = common_tools.normalize_np2d_array(height_map, normalization_range)
+        height_map = numpy_tools.normalize_np2d_array(height_map, normalization_range)
         moisture_map = self._simplex_noise.gen_multi_noise_map(
             shape,
             cfg['moisture_map']
         )
-        moisture_map = common_tools.normalize_np2d_array(moisture_map, normalization_range)
+        moisture_map = numpy_tools.normalize_np2d_array(moisture_map, normalization_range)
 
         self._height_map = height_map
         self._moisture_map = moisture_map
         # reset simplex noise seed so that next call of that method generates terrain dependent on seed
         self._reset_simplex_noise()
+
+
 

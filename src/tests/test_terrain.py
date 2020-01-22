@@ -52,7 +52,6 @@ def test_properties():
 
 
 def test_biomes():
-
     terrain = Terrain(CONFIG)
 
     height_map = np.asarray(
@@ -84,9 +83,9 @@ def test_biomes():
         dtype=float
     )
 
-    moisture_map = np.transpose(moisture_map)
-    height_map = np.transpose(height_map)
-    biome_map = terrain.get_biome_map(height_map, moisture_map)
+    terrain.moisture_map = np.transpose(moisture_map)
+    terrain.height_map = np.transpose(height_map)
+    biome_map = terrain.get_biome_map()
     assert biome_map[0][0] == 'WATER'
     assert biome_map[1][0] == 'BEACH'
     assert biome_map[2][0] == 'DESERT'

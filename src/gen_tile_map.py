@@ -1,10 +1,9 @@
-import common_tools
+import debug_tools
 from terrain import Terrain
 import constants
 import json
 import argparse
-import image
-# from schema import Schema, And, Use, Optional, SchemaError
+import image_tools
 
 
 if __name__ == "__main__":
@@ -28,8 +27,8 @@ if __name__ == "__main__":
     terrain = Terrain(config=world_conf, seed=args.seed, shape=args.resolution,
                       octave_multiplier=args.octave_multiplier)
     color_map = terrain.get_color_map()
-    img = image.create_image_from_color_map(color_map, args.grid)
-    image.save_image(img, args.output_path)
+    img = image_tools.create_image_from_color_map(color_map, args.grid)
+    image_tools.save_image(img, args.output_path)
     if args.debug:
-        common_tools.plot2d(terrain.height_map)
-        common_tools.plot2d(terrain.moisture_map, cmap='gray')
+        debug_tools.plot2d(terrain.height_map)
+        debug_tools.plot2d(terrain.moisture_map, cmap='gray')

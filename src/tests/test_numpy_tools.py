@@ -1,4 +1,4 @@
-import common_tools
+import numpy_tools
 import numpy as np
 import random
 
@@ -15,7 +15,7 @@ def test_normalization():
         test_array = np.zeros(shape, dtype=float)
         test_array[1][1] = 1
         test_array[100][100] = 100
-        test_array = common_tools.normalize_np2d_array(test_array, (down, up))
+        test_array = numpy_tools.normalize_np2d_array(test_array, (down, up))
         max_value = np.amax(test_array)
         min_value = np.amin(test_array)
         assert max_value == up
