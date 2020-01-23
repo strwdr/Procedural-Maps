@@ -268,7 +268,7 @@ The tuples stored in the array are (float > 0 (threshold), string (biome name))
 
 For any positive y in range of len(arr\[x]\[1]):
 
-*arr\[x]\[y-1]\[1] < arr\[x]\[y]\[1]*
+*arr\[x]\[y-1]\[0] < arr\[x]\[y]\[0]*
 
 ### Example config <a name="worldcfg-example"></a>
 simple config with 3 biomes
