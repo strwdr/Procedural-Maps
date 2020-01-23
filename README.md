@@ -10,7 +10,7 @@
     - [ resolution ](#res)
     - [ grid ](#grid)
     - [ output path ](#outpth)
-    - [ octave multiplier](#octmultiplier)
+    - [ octave multiplier](#oct-multiplier)
 5. [ World generator config ](#worldcfg)
     - [ Parameters ](#worldcfg-params)
     - [ Example](#worldcfg-example)
@@ -256,9 +256,9 @@ It is an array of two-valued tuples.
 Let's assume that arr is the biome_thresholds array, and the normalization is a tuple of normalization boundaries 
 (as specified in the config file).
 
-*arr\[x]\[0]* value is the threshold below which all the height  is assigned to 
-
 For any positive x in range of len(arr):
+
+*arr\[x]\[0]* is the height threshold below which all the points with smaller or equal height values and bigger than *arr\[x-1]\[0]* are assigned to that moisture threshold settings - *arr\[x]\[1]*
 
 *arr\[x-1]\[0] < arr\[x]\[0]*
 
@@ -268,7 +268,11 @@ The tuples stored in the array are (float > 0 (threshold), string (biome name))
 
 For any positive y in range of len(arr\[x]\[1]):
 
+*arr\[x]\[y]\[0]* is the moisture threshold below which all the points with smaller or equal moisture values and bigger than *arr\[x]\[y-1]\[0]* are assigned to that biome - *arr\[x]\[y]\[1]*
+
 *arr\[x]\[y-1]\[0] < arr\[x]\[y]\[0]*
+
+*arr\[x]\[y]\[1]* - a biome defined in biomes
 
 ### Example config <a name="worldcfg-example"></a>
 simple config with 3 biomes
