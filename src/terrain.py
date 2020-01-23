@@ -14,7 +14,7 @@ class Terrain:
         # if passed, multiply all local octave settings by octave_stretch
         if octave_multiplier is not None:
             if octave_multiplier[0] < 0 or octave_multiplier[1] < 0:
-                raise ValueError("octave_stretch values cannot be less than 0")
+                raise ValueError("octave_multiplier values cannot be less than 0")
             for tmp_height_map in self._config['height_map']:
                 for tmp_octave in tmp_height_map['octaves']:
                     tmp_octave[0] *= octave_multiplier[0]
