@@ -1,6 +1,5 @@
 numpy
 pillow
 opensimplex
-argparse
 matplotlib
 pytest
