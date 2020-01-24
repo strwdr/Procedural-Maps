@@ -28,7 +28,8 @@ if __name__ == "__main__":
                       octave_multiplier=args.octave_multiplier)
     color_map = terrain.get_color_map()
     img = image_tools.create_image_from_color_map(color_map, args.grid)
-    image_tools.save_image(img, args.output_path)
+    img.save(args.output_path)
+
     if args.debug:
         debug_tools.plot2d(terrain.height_map)
         debug_tools.plot2d(terrain.moisture_map, cmap='gray')

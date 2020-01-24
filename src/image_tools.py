@@ -31,7 +31,3 @@ def create_image_from_color_map(color_map, grid=False):
         color_map = tmp_color_map
     img = Image.fromarray(color_map, 'RGB')
     return img
-
-
-def save_image(img, path):
-    img.save(path)
