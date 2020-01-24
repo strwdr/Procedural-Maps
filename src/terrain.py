@@ -31,7 +31,7 @@ class Terrain:
         if 'shape' not in self._config:
             self._config['shape'] = constants.DEFAULT_SHAPE
         if self.shape[0] <= 0 or self.shape[1] <= 0:
-            raise ValueError("shape values cannot be less than 0")
+            raise ValueError("shape values cannot be less than 1")
 
         self._moisture_map = None
         self._height_map = None

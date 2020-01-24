@@ -92,12 +92,12 @@ python gen_tile_map.py --seed 123
 ### config path <a name="cfgpth"></a>
 World generator configuration path (string, file must be of json type).
 
-Default: 'default_world_config.json'
+Default: "default_world_config.json"
 
 Example:
 
 ```bash
-python gen_tile_map.py --config_path 'my_world_config.json'
+python gen_tile_map.py --config_path "my_world_config.json"
 ```
 
 ### resolution <a name="res"></a>
@@ -133,12 +133,12 @@ Output 25x25 map with grid parameter:
 ### output path <a name="outpth"></a>
 Tile map image output path (string, file must be of png type).
 
-Default: 'output.png'
+Default: "output.png"
 
 Example:
 
 ```bash
-python gen_tile_map.py --output_path 'my_output.png'
+python gen_tile_map.py --output_path "my_output.png"
 ```
 
 ### octave multiplier <a name="oct-multiplier"></a>
