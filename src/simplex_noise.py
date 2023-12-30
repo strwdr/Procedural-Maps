@@ -11,7 +11,7 @@ class SimplexNoise:
         self._random = random.Random(seed)
         self._seed = seed
         self._simplex_seed = 0
-        self._open_simplex = OpenSimplex()
+        self._open_simplex = OpenSimplex(seed)
         self._shuffle_simplex_seed()  # make simplex seed dependent on local random instance
 
     @property
@@ -47,9 +47,9 @@ class SimplexNoise:
         otherwise, the default OpenSimplex noise2d method is returned
         """
         if octave is None or shape is None:
-            point = self._open_simplex.noise2d(x, y)
+            point = self._open_simplex.noise2(x, y)
         else:
-            point = self._open_simplex.noise2d((x / shape[0]) * octave[0], (y / shape[1]) * octave[1])
+            point = self._open_simplex.noise2((x / shape[0]) * octave[0], (y / shape[1]) * octave[1])
         point += 1.
         point /= 2
         if point < 0.:
