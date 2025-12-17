@@ -1,6 +1,5 @@
-numpy
-pillow
-opensimplex
-matplotlib
-pytest
-argparse
+numpy>=1.21.0
+pillow>=8.0.0
+opensimplex>=0.3
+matplotlib>=3.5.0
+pytest>=6.0.0

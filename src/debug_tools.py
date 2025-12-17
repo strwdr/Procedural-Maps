@@ -1,10 +1,11 @@
 import numpy as np
 from matplotlib import pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 
 def plot3d(a):
     fig = plt.figure()
-    ax = fig.gca(projection='3d')
+    ax = fig.add_subplot(111, projection='3d')
     x = np.arange(0, a.shape[0], 1)
     y = np.arange(0, a.shape[1], 1)
     x, y = np.meshgrid(x, y)

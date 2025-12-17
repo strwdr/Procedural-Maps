@@ -120,7 +120,8 @@ class Terrain:
                 if biome_map[x][y] is None:
                     color_map[x][y] = constants.NONE_COLOR
                 else:
-                    color_map[x][y] = biomes[biome_map[x][y]]
+                    biome_name = biome_map[x][y]
+                    color_map[x][y] = biomes[biome_name]
         return color_map
 
     def _generate_terrain(self):

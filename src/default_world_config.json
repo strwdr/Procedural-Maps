@@ -27,6 +27,7 @@
   ],
   "moisture_map": [
     {
+      "noise_variant": "simplex",
       "octaves": [
         [2, 1],
         [5, 5],
@@ -34,7 +35,8 @@
         [20, 20],
         [30, 30]
       ],
-      "elevation_distribution": [20, 7, 4, 3, 2]
+      "elevation_distribution": [20, 7, 4, 3, 2],
+      "noise_exp": 1
     }
   ],
   "biomes":
